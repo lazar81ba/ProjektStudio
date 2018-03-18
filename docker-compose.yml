@@ -1,0 +1,16 @@
+version: "3.1"
+services:
+  load-banancer-sample-app:
+      build: ./BotRest
+      container_name: rest
+      ports:
+          - "8080:8080"
+      depends_on:
+          - database_0
+
+  database_0:
+      image: postgres:10
+      container_name: db
+      ports:
+          - "5432:5432"
+
