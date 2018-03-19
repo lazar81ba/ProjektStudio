@@ -29,7 +29,9 @@ Once docker-machine is created, we should start it:
 ```
 # run this command every time after restart of your computer
 docker-machine start docker-bot
-# run this command every time after opening new terminal
+# WINDOWS : run this command and follow instructions
+docker-machine env docker-bot
+# MAC : run this command every time after opening new terminal
 eval $(docker-machine env docker-bot)
 ```
 
