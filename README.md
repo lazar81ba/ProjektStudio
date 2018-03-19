@@ -34,12 +34,17 @@ eval $(docker-machine env docker-bot)
 ```
 
 ## Build an current version of this project
+To build project you need to run below command in these subdirectories: \BotRest
 ```
 # run this command after any changes in application code
 mvn  clean install
 ```
 
-Once you app is successfully built, we are ready to setup containers:
+Once you app is successfully built, you need to proceed to parrent directory and execute below command:
+```
+docker-compose up
+```
+
 ```
 # run these commands every time you want to restart an application
 docker-compose build
