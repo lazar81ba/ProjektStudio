@@ -1,7 +1,7 @@
 # ProjektStudio
 
 ## Overview
-This project contains an sample application to demonstrate load-balancer library.
+This repository contains university project.
 
 ## How to run
 
