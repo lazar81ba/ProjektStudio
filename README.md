@@ -28,9 +28,11 @@ to run above command only once.
 Once docker-machine is created, we should start it:
 ```
 # run this command every time after restart of your computer
-docker-machine start docker-bot
+docker-machine start docker-bot 
+
 # WINDOWS : run this command and follow instructions
 docker-machine env docker-bot
+
 # MAC : run this command every time after opening new terminal
 eval $(docker-machine env docker-bot)
 ```
