@@ -13,6 +13,10 @@ public class StudentService {
     @Autowired
     StudentRepository studentRepository;
 
+    public Student getStudentByIndex(String index){
+        return studentRepository.getStudent(index);
+    }
+
     public List<Student> getAllStudents(){
         return studentRepository.getAll();
     }

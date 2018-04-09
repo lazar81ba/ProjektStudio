@@ -1,29 +1,16 @@
 package com.studio.model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
-
+import java.sql.Timestamp;
 import java.util.Date;
 
-public class Student {
+public class Employee {
     private Long id;
     private String name;
     private String surname;
     private Date birthDate;
-    private String sex;
-    private String universityIndex;
-    private Group group;
-
-
-    public Group getGroup() {
-        return group;
-    }
-
-    public void setGroup(Group group) {
-        this.group = group;
-    }
-
+    private Timestamp startConsultationTime;
+    private Timestamp endConsultationTime;
+    private Room room;
 
     public Long getId() {
         return id;
@@ -57,21 +44,27 @@ public class Student {
         this.birthDate = birthDate;
     }
 
-    public String getSex() {
-        return sex;
+    public Timestamp getStartConsultationTime() {
+        return startConsultationTime;
     }
 
-    public void setSex(String sex) {
-        this.sex = sex;
+    public void setStartConsultationTime(Timestamp startConsultationTime) {
+        this.startConsultationTime = startConsultationTime;
     }
 
-    public String getUniversityIndex() {
-        return universityIndex;
+    public Timestamp getEndConsultationTime() {
+        return endConsultationTime;
     }
 
-    public void setUniversityIndex(String universityIndex) {
-        this.universityIndex = universityIndex;
+    public void setEndConsultationTime(Timestamp endConsultationTime) {
+        this.endConsultationTime = endConsultationTime;
     }
 
+    public Room getRoom() {
+        return room;
+    }
 
+    public void setRoom(Room room) {
+        this.room = room;
+    }
 }
