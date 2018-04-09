@@ -110,6 +110,9 @@ CREATE TABLE IF NOT EXISTS public.employee
 
 CREATE TABLE IF NOT EXISTS public.assignation
 (
+  id serial not null
+    constraint assignation_pkey
+    primary key,
   id_employee INTEGER,
   id_subject INTEGER
 );

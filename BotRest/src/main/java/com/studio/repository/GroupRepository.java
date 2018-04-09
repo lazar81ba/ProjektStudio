@@ -23,7 +23,7 @@ public class GroupRepository extends com.studio.repository.Repository{
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String sql = "select g.id, g.name, g.year, g.id_specialization, s.id, s.name from public.group g inner join public.specialization s on g.id_specialization=s.id where g.id=?";
+        String sql = "select g.id, g.name, g.year, g.id_specialization, s.name from public.group g inner join public.specialization s on g.id_specialization=s.id where g.id=?";
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(sql);
