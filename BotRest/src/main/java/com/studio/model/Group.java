@@ -1,18 +1,9 @@
 package com.studio.model;
 
 public class Group {
-    private Long id;
     private String name;
     private Integer year;
     private Specialization specialization;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

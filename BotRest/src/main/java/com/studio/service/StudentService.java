@@ -14,11 +14,11 @@ public class StudentService {
     StudentRepository studentRepository;
 
     public Student getStudentByIndex(String index){
-        return studentRepository.getStudent(index);
+        return studentRepository.getStudentByIndex(index);
     }
 
     public List<Student> getAllStudents(){
-        return studentRepository.getAll();
+        return studentRepository.getAllStudents();
     }
 
 }

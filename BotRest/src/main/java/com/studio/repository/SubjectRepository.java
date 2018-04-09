@@ -14,11 +14,11 @@ import java.sql.SQLException;
 @Transactional
 public class SubjectRepository extends com.studio.repository.Repository{
 
-    public Subject getSubject(Long id) {
+    public Subject getSubjectById(Long id) {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String sql = "select s.id, s.name,s.description from public.subject s where s.id=?";
+        String sql = "select s.name,s.description from public.subject s where s.id=?";
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -27,9 +27,8 @@ public class SubjectRepository extends com.studio.repository.Repository{
             resultSet = preparedStatement.executeQuery();
             Subject subject = new Subject();
             if(resultSet.next()){
-                subject.setId(resultSet.getLong(1));
-                subject.setName(resultSet.getString(2));
-                subject.setDescription(resultSet.getString(3));
+                subject.setName(resultSet.getString(1));
+                subject.setDescription(resultSet.getString(2));
             }
             close(resultSet,preparedStatement,connection);
             return subject;

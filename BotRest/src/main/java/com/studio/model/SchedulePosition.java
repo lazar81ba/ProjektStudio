@@ -1,14 +1,15 @@
 package com.studio.model;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class SchedulePosition {
+public class SchedulePosition{
 
+    private String dateStart;
+    private String dateEnd;
     private Group group;
     private Subject subject;
     private Room room;
-    private Timestamp dateStart;
-    private Timestamp dateEnd;
 
     public Group getGroup() {
         return group;
@@ -34,19 +35,19 @@ public class SchedulePosition {
         this.room = room;
     }
 
-    public Timestamp getDateStart() {
+    public String getDateStart() {
         return dateStart;
     }
 
-    public void setDateStart(Timestamp dateStart) {
+    public void setDateStart(String dateStart) {
         this.dateStart = dateStart;
     }
 
-    public Timestamp getDateEnd() {
+    public String getDateEnd() {
         return dateEnd;
     }
 
-    public void setDateEnd(Timestamp dateEnd) {
+    public void setDateEnd(String dateEnd) {
         this.dateEnd = dateEnd;
     }
 }

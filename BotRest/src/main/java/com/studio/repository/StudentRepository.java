@@ -21,11 +21,11 @@ public class StudentRepository extends com.studio.repository.Repository {
     @Autowired
     GroupService groupService;
 
-    public List<Student> getAll() {
+    public List<Student> getAllStudents() {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String sql = "select s.id, s.name, s.surname, s.birth_date, s.sex," +
+        String sql = "select s.name, s.surname, s.birth_date, s.sex," +
                 "s.university_index,s.id_group from public.student s";
         try {
             connection = dataSource.getConnection();
@@ -35,13 +35,12 @@ public class StudentRepository extends com.studio.repository.Repository {
             List<Student> students = new LinkedList<>();
             while(resultSet.next()){
                 Student student = new Student();
-                student.setId(resultSet.getLong(1));
-                student.setName(resultSet.getString(2));
-                student.setSurname(resultSet.getString(3));
-                student.setBirthDate(resultSet.getDate(4));
-                student.setSex(resultSet.getString(5));
-                student.setUniversityIndex(resultSet.getString(6));
-                student.setGroup(groupService.getGroup(resultSet.getLong(7)));
+                student.setName(resultSet.getString(1));
+                student.setSurname(resultSet.getString(2));
+                student.setBirthDate(resultSet.getDate(3));
+                student.setSex(resultSet.getString(4));
+                student.setUniversityIndex(resultSet.getString(5));
+                student.setGroup(groupService.getGroup(resultSet.getLong(6)));
                 students.add(student);
             }
             close(resultSet,preparedStatement,connection);
@@ -51,13 +50,14 @@ public class StudentRepository extends com.studio.repository.Repository {
         }
         return null;
 
+
     }
 
-    public Student getStudent(String index) {
+    public Student getStudentByIndex(String index) {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String sql = "select s.id, s.name, s.surname, s.birth_date, s.sex," +
+        String sql = "select  s.name, s.surname, s.birth_date, s.sex," +
                 "s.id_group from public.student s where s.university_index= ? ";
         try {
             connection = dataSource.getConnection();
@@ -67,13 +67,12 @@ public class StudentRepository extends com.studio.repository.Repository {
             resultSet = preparedStatement.executeQuery();
             Student student = new Student();
             if(resultSet.next()){
-                student.setId(resultSet.getLong(1));
-                student.setName(resultSet.getString(2));
-                student.setSurname(resultSet.getString(3));
-                student.setBirthDate(resultSet.getDate(4));
-                student.setSex(resultSet.getString(5));
+                student.setName(resultSet.getString(1));
+                student.setSurname(resultSet.getString(2));
+                student.setBirthDate(resultSet.getDate(3));
+                student.setSex(resultSet.getString(4));
                 student.setUniversityIndex(index);
-                student.setGroup(groupService.getGroup(resultSet.getLong(6)));
+                student.setGroup(groupService.getGroup(resultSet.getLong(5)));
             }
             close(resultSet,preparedStatement,connection);
             return student;

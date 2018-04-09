@@ -13,11 +13,11 @@ import java.sql.SQLException;
 @Transactional
 public class SpecializationRepository extends com.studio.repository.Repository {
 
-    public Specialization getSpecialization(Long id) {
+    public Specialization getSpecializationById(Long id) {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String sql = "select s.id, s.name from public.specialization s where s.id=?";
+        String sql = "select s.name from public.specialization s where s.id=?";
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -26,8 +26,7 @@ public class SpecializationRepository extends com.studio.repository.Repository {
             resultSet = preparedStatement.executeQuery();
             Specialization specialization = new Specialization();
             if(resultSet.next()){
-                specialization.setId(resultSet.getLong(1));
-                specialization.setName(resultSet.getString(2));
+                specialization.setName(resultSet.getString(1));
             }
             close(resultSet,preparedStatement,connection);
             return specialization;

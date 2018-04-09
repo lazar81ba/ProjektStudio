@@ -13,11 +13,11 @@ import java.sql.SQLException;
 @Transactional
 public class RoomRepository extends com.studio.repository.Repository{
 
-    public Room getRoom(Long id) {
+    public Room getRoomById(Long id) {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String sql = "select r.id, r.name,r.building, r.level from public.room r where r.id=?";
+        String sql = "select r.name,r.building, r.level from public.room r where r.id=?";
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -26,10 +26,9 @@ public class RoomRepository extends com.studio.repository.Repository{
             resultSet = preparedStatement.executeQuery();
             Room room = new Room();
             if(resultSet.next()){
-                room.setId(resultSet.getLong(1));
-                room.setName(resultSet.getString(2));
-                room.setBuilding(resultSet.getString(3));
-                room.setLevel(resultSet.getInt(4));
+                room.setName(resultSet.getString(1));
+                room.setBuilding(resultSet.getString(2));
+                room.setLevel(resultSet.getInt(3));
             }
             close(resultSet,preparedStatement,connection);
             return room;

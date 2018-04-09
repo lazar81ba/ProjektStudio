@@ -19,11 +19,11 @@ public class GroupRepository extends com.studio.repository.Repository{
 
 
 
-    public Group getGroup(Long id) {
+    public Group getGroupById(Long id) {
         Connection connection;
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        String sql = "select g.id, g.name, g.year, g.id_specialization, s.name from public.group g inner join public.specialization s on g.id_specialization=s.id where g.id=?";
+        String sql = "select  g.name, g.year, s.name from public.group g inner join public.specialization s on g.id_specialization=s.id where g.id=?";
         try {
             connection = dataSource.getConnection();
             preparedStatement = connection.prepareStatement(sql);
@@ -32,12 +32,10 @@ public class GroupRepository extends com.studio.repository.Repository{
             resultSet = preparedStatement.executeQuery();
             Group group = new Group();
             if(resultSet.next()){
-                group.setId(resultSet.getLong(1));
-                group.setName(resultSet.getString(2));
-                group.setYear(resultSet.getInt(3));
+                group.setName(resultSet.getString(1));
+                group.setYear(resultSet.getInt(2));
                 Specialization specialization = new Specialization();
-                specialization.setId(resultSet.getLong(4));
-                specialization.setName(resultSet.getString(5));
+                specialization.setName(resultSet.getString(3));
                 group.setSpecialization(specialization);
             }
             close(resultSet,preparedStatement,connection);

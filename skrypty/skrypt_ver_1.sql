@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS public.student
   surname varchar(255),
   birth_date date,
   sex varchar(10),
-  university_index varchar(255),
+  university_index varchar(255) unique,
   id_group integer
 );
 
@@ -105,6 +105,7 @@ CREATE TABLE IF NOT EXISTS public.employee
   start_consultation_time TIME,
   end_consultation_time TIME,
   consultation_day varchar(255),
+  university_nick varchar(255) unique,
   id_room integer not null
 );
 

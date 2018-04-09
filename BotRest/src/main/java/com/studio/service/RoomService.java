@@ -11,6 +11,6 @@ public class RoomService {
     RoomRepository roomRepository;
 
     public Room getRoom(Long id){
-        return roomRepository.getRoom(id);
+        return roomRepository.getRoomById(id);
     }
 }

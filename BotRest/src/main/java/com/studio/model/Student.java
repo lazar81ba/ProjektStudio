@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import java.util.Date;
 
 public class Student {
-    private Long id;
     private String name;
     private String surname;
     private Date birthDate;
@@ -22,15 +21,6 @@ public class Student {
 
     public void setGroup(Group group) {
         this.group = group;
-    }
-
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

@@ -12,6 +12,6 @@ public class GroupService {
     GroupRepository groupRepository;
 
     public Group getGroup(Long id){
-        return groupRepository.getGroup(id);
+        return groupRepository.getGroupById(id);
     }
 }

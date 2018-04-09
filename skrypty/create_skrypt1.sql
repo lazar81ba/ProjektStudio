@@ -6,7 +6,7 @@ INSERT INTO public.user (university_index,password,active,id_role) VALUES
   ('254213','password1',TRUE ,1),
   ('223123','password2',TRUE,1),
   ('253233','password3',TRUE,1),
-  ('testProwadzacy1','password11',TRUE,2),
+  ('asow','password11',TRUE,2),
   ('testProwadzacy2','password12',TRUE,2);
 
 INSERT INTO public.specialization (name) VALUES
@@ -46,8 +46,8 @@ INSERT INTO public.room (name,building,level) VALUES
   ('341','B1',3),
   ('228','B1',2);
 
-INSERT INTO public.employee (name,surname,birth_date,consultation_day,start_consultation_time,end_consultation_time,id_room) VALUES
-  ('Adam','Sowa','1975-12-01',4,'12:00','13:00',2);
+INSERT INTO public.employee (name,surname,birth_date,consultation_day,start_consultation_time,end_consultation_time,university_nick,id_room) VALUES
+  ('Adam','Sowa','1975-12-01','Monday','12:00','13:00','asow',2);
 
 INSERT INTO public.assignation (id_subject,id_employee) VALUES
   (1,1),

@@ -1,8 +1,6 @@
 package com.studio.service;
 
-import com.studio.model.Group;
 import com.studio.model.Subject;
-import com.studio.repository.GroupRepository;
 import com.studio.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +11,6 @@ public class SubjectService {
     SubjectRepository subjectRepository;
 
     public Subject getSubject(Long id){
-        return subjectRepository.getSubject(id);
+        return subjectRepository.getSubjectById(id);
     }
 }
