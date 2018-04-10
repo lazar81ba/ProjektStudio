@@ -21,7 +21,7 @@ public class StudentController {
         return studentService.getStudentByIndex(index);
     }
 
-    @RequestMapping(path = "/getAll", method = RequestMethod.GET)
+    @RequestMapping(path = "/getAllStudents", method = RequestMethod.GET)
     @ResponseBody
     public List<Student> getAll() {
         return studentService.getAllStudents();
