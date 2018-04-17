@@ -10,6 +10,16 @@ public class Consultation {
     private String consultationDay;
     private Room room;
 
+
+    public Consultation(){};
+
+    public Consultation(Time startConsultationTime, Time endConsultationTime, String consultationDay, Room room) {
+        this.startConsultationTime = startConsultationTime;
+        this.endConsultationTime = endConsultationTime;
+        this.consultationDay = consultationDay;
+        this.room = room;
+    }
+
     public String getConsultationDay() {
         return consultationDay;
     }

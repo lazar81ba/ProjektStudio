@@ -1,9 +1,26 @@
 package com.studio.model;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Entity
+@Table(name = "room",schema = "public")
 public class Room {
-    public String name;
-    public String building;
+    @Id
+    private long id;
+    @Column
+    private String name;
+    @Column
+    private String building;
+    @Column
     private Integer level;
+
+    @OneToMany(mappedBy = "room")
+    private Set<Schedule> schedules=new HashSet<>();
+
+    @OneToMany(mappedBy = "room")
+    private Set<Employee> employees=new HashSet<>();
 
     public String getName() {
         return name;

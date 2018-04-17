@@ -6,8 +6,6 @@ import com.studio.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 public class StudentController {
 
@@ -23,7 +21,19 @@ public class StudentController {
 
     @RequestMapping(path = "/getAllStudents", method = RequestMethod.GET)
     @ResponseBody
-    public List<Student> getAll() {
+    public Iterable<Student> getAll() {
         return studentService.getAllStudents();
+    }
+
+    @RequestMapping(path = "/getAllStudentsByGroup", method = RequestMethod.GET)
+    @ResponseBody
+    public Iterable<Student> getStudentsByGroup(@RequestParam(value="groupId", required = true) long groupId) {
+        return studentService.getAllStudentsByGroup(groupId);
+    }
+
+    @RequestMapping(path = "/getAllStudentsBySubject", method = RequestMethod.GET)
+    @ResponseBody
+    public Iterable<Student> getStudentsBySubject(@RequestParam(value="subjectId", required = true) long subjectId) {
+        return studentService.getAllStudentsBySubject(subjectId);
     }
 }

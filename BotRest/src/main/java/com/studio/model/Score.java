@@ -1,19 +1,25 @@
 package com.studio.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "score",schema = "public")
 public class Score {
-    private Long id;
+    @Id
+    private long id;
+    @Column
     private String name;
+    @Column
     private Double value;
+
+    @ManyToOne
+    @JoinColumn(name = "id_subject",nullable = true)
     private Subject subject;
+
+    @ManyToOne
+    @JoinColumn(name = "id_student",nullable = true)
     private Student student;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

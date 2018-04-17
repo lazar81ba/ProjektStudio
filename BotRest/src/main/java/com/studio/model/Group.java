@@ -1,8 +1,27 @@
 package com.studio.model;
 
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity(name = "Groups")
+@Table(name = "group", schema = "public")
 public class Group {
+    @Id
+    private long id;
+    @Column
     private String name;
+    @Column
     private Integer year;
+
+
+    @OneToMany(mappedBy = "group")
+    private Set<Student> students;
+
+    @OneToMany(mappedBy = "group")
+    private Set<Schedule> schedules;
+
+    @ManyToOne
+    @JoinColumn(name = "id_specialization",nullable = true)
     private Specialization specialization;
 
     public String getName() {

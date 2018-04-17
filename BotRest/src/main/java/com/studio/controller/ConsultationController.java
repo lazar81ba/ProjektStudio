@@ -10,7 +10,7 @@ public class ConsultationController {
     @Autowired
     private EmployeeService employeeService;
 
-    @RequestMapping(path = "/getConsultationByName", method = RequestMethod.GET)
+    @RequestMapping(path = "/getConsultationByNameAndSurname", method = RequestMethod.GET)
     @ResponseBody
     public Consultation getConsultationByName(@RequestParam(value = "name", required = true) String name,
                                     @RequestParam(value = "surname", required = true) String surname) {

@@ -1,18 +1,44 @@
 package com.studio.model;
 
+import javax.persistence.*;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+@Entity
+@Table(name = "employee",schema = "public")
 public class Employee {
-    private Long id;
+
+    @Id
+    private long id;
+    @Column
     private String name;
+    @Column
     private String surname;
+    @Column(name = "birth_date")
     private Date birthDate;
+    @Column(name = "start_consultation_time")
     private Time startConsultationTime;
+    @Column(name = "end_consultation_time")
     private Time endConsultationTime;
+    @Column(name = "consultation_day")
     private String consultationDay;
+    @Column(name="university_nick")
+    private String universityNick;
+
+    @ManyToOne
+    @JoinColumn(name = "id_room",nullable = true)
     private Room room;
+
+    @ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+            name = "assignation",
+            joinColumns = { @JoinColumn(name = "id_employee") },
+            inverseJoinColumns = { @JoinColumn(name = "id_subject") }
+    )
+    private Set<Subject> subjects = new HashSet<>();
 
 
     public String getConsultationDay() {
@@ -23,13 +49,6 @@ public class Employee {
         this.consultationDay = consultationDay;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

@@ -9,9 +9,8 @@ services:
           - DEBUG=1
       depends_on:
           - database_0
-
   database_0:
-      image: postgres:10
+      image: postgres:9
       container_name: database
       volumes:
           - ./skrypty/skrypt_ver_1.sql:/docker-entrypoint-initdb.d/1-schema.sql
