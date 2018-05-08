@@ -1,0 +1,31 @@
+
+<div class="chat">
+  <div class="header">
+    <p align="center"><span class="glyphicon glyphicon-comment"></span> Chat</p>
+  </div>
+  <div class="main-body" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <mat-list>
+      <ng-container *ngFor="let message of messages | async">
+        <div  class="message-container"*ngIf="message.sentBy === 'user'">
+          <img src="./../../../assets/images/user.png" alt="Avatar" style="width:100%;">
+          <div class="message-cloud left-message">
+            <p>{{message.content}}</p>
+          </div>
+
+        </div>
+        <div class="message-container " *ngIf="message.sentBy === 'bot'">
+          <img src="./../../../assets/images/robot-icon2.jpg" alt="Avatar" class="right" style="width:100%;">
+          <div class="message-cloud right-message bot">
+            <p>{{message.content}}</p>
+          </div>
+        </div>
+      </ng-container>
+    </mat-list>
+  </div>
+  <div class="footer">
+    <div class="full-width ">
+      <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
+      <button class="button button-outline" (click)="sendMessage()">Send</button>
+    </div>
+  </div>
+</div>
