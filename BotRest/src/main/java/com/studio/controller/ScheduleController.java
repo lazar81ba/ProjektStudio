@@ -21,6 +21,7 @@ public class ScheduleController {
     @Autowired
     private SubjectDAO subjectDAO;
 
+    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(path = "/getStudentSchedule", method = RequestMethod.GET)
     @ResponseBody
     public Plan getStudentSchedule(@RequestParam(value="index", required = true) String index) {
