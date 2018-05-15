@@ -24,8 +24,12 @@
   </div>
   <div class="footer">
     <div class="full-width ">
-      <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
-      <button class="button button-outline" (click)="sendMessage()">Send</button>
+      <div class="user-input">
+        <input [(ngModel)]="formValue" (keyup.enter)="sendMessage()" type="text">
+        <button class="button button-outline" (click)="sendMessage()">Send</button>
+      </div>
     </div>
   </div>
 </div>
+
+<!--<button (click)="onTest()">Test</button>-->

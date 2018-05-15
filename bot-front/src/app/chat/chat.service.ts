@@ -27,9 +27,14 @@ export class ChatService {
 
     return this.client.textRequest(msg)
       .then(res => {
+        console.log(res);
         const speech = res.result.fulfillment.speech;
+        const role = res.result['parameters']['Role'];
+        const actionType = res.result['parameters']['ActionType'];
+        const date = res.result['parameters']['date-time'];
         const botMessage = new Message(speech, 'bot');
         this.update(botMessage);
+
       });
   }
 
