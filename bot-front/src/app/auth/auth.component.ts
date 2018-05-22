@@ -21,8 +21,8 @@ export class AuthComponent implements OnInit {
   onSignIn(f: NgForm) {
       const index = f.value.index;
       const pass = f.value.password;
-
-      if (this.userAuthService.authorize(index, pass)) {
+      this.userAuthService.authorize(index, pass);
+      if (this.userAuthService.isAuthorized()) {
         this.router.navigate(['/bot']);
       } else {
         this.error = true;

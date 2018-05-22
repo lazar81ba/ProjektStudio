@@ -1,4 +1,4 @@
-///<reference path="specialization.ts"/>
+///<reference path="./specialization.ts"/>
 import {Specialization} from './specialization';
 
 export class Group {

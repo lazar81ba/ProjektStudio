@@ -5,4 +5,5 @@ import com.studio.model.Subject;
 public interface SubjectService {
 
     public Subject getSubjectById(Long id);
+    public Subject getSubjectByName(String name);
 }

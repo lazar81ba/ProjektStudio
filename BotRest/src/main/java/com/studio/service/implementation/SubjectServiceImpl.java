@@ -10,8 +10,8 @@ import org.springframework.stereotype.Service;
 public class SubjectServiceImpl implements SubjectService {
     @Autowired
     SubjectDAO subjectDAO;
-
     public Subject getSubjectById(Long id){
         return subjectDAO.findOne(id);
     }
+    public Subject getSubjectByName(String name) {return subjectDAO.findFirstByName(name);}
 }

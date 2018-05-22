@@ -1,0 +1,8 @@
+Test1
+<div *ngIf="schedules !== null">
+  <ul>
+    <li *ngFor="let schedule of schedules">
+      DateStart: {{ schedule.dateStart }},
+      DateEnd: {{ schedule.dateEnd }},
+  </ul>
+</div>

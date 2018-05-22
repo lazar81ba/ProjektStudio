@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/scan';
 import { ChatService } from '../chat.service';
-import {Message} from '../../shared/Message';
+import {Message} from '../../model/Message';
 import {ScheduleService} from '../../shared/schedule.service';
+import {Score} from '../../model/Score';
+import {ScoresService} from '../../shared/scores.service';
 
 @Component({
   selector: 'chat-dialog',
@@ -15,7 +17,7 @@ export class ChatDialogComponent implements OnInit {
   messages: Observable<Message[]>;
   formValue: string;
 
-  constructor(public chat: ChatService, private scheduleService: ScheduleService) { }
+  constructor(public chat: ChatService, private scheduleService: ScheduleService, private scoreService: ScoresService) { }
 
   ngOnInit() {
     // appends to array after each new message is added to feedSource
@@ -31,5 +33,9 @@ export class ChatDialogComponent implements OnInit {
 
   onTest() {
     this.scheduleService.getScheduleForStudent();
+  }
+
+  onTest2() {
+    this.scoreService.getScoresBySubject(1);
   }
 }

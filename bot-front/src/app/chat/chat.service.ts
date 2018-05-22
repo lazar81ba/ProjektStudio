@@ -3,9 +3,16 @@ import {AfterViewChecked, AfterViewInit, Injectable, OnInit} from '@angular/core
 import { ApiAiClient } from 'api-ai-javascript';
 
 import { Observable } from 'rxjs/Observable';
+import {Subject as subjectRxjs}  from 'rxjs/Subject';
+
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { environment } from '../../environments/environment';
-import {Message} from '../shared/Message';
+import {Message} from '../model/Message';
+import {UserAuthService} from '../shared/user-auth.service';
+import {ScheduleService} from '../shared/schedule.service';
+import {Subject} from '../model/subject';
+import {SubjectService} from '../shared/subject.service';
+import {ScoresService} from '../shared/scores.service';
 
 // Message class for displaying messages in the component
 
@@ -18,7 +25,10 @@ export class ChatService {
 
   conversation = new BehaviorSubject<Message[]>([]);
 
-  constructor() {}
+  private conversationSubject = new subjectRxjs<any>();
+  private res: any;
+
+  constructor(private userAuthService: UserAuthService, private scheduleService: ScheduleService, private subjectService: SubjectService, private scoreService: ScoresService) {}
 
   // Sends and receives messages via DialogFlow
   converse(msg: string) {
@@ -27,22 +37,100 @@ export class ChatService {
 
     return this.client.textRequest(msg)
       .then(res => {
-        console.log(res);
-        const speech = res.result.fulfillment.speech;
-        const role = res.result['parameters']['Role'];
-        const actionType = res.result['parameters']['ActionType'];
-        const date = res.result['parameters']['date-time'];
-        const botMessage = new Message(speech, 'bot');
-        this.update(botMessage);
-
+        this.res = res;
+        let role = null;
+        if (!(typeof res.result['parameters']['Role'] === 'undefined')) {
+           role = res.result['parameters']['Role'];
+        }
+        if (!this.authorizeRole(role)) {
+          this.stopConversation();
+        } else {
+          this.processAction();
+        }
       });
   }
 
+  private authorizeRole(role: string): boolean {
+    if (role !== null && role !== 'Both') {
+      return role === this.userAuthService.getUserRole();
+    }
+    return true;
+  }
 
+  private stopConversation() {
+    this.client.textRequest('stop');
+    this.update(new Message('You are not authorized for this operation. Try my different way.', 'bot'));
+  }
+
+
+  private processAction() {
+    let actionType;
+    if (!(typeof this.res.result['parameters']['ActionType'] === 'undefined')) {
+      actionType = this.res.result['parameters']['ActionType'];
+    }
+    if (actionType === 'Schedule') {
+      this.processScheduleAction();
+    } else if (actionType === 'ScoreForStudent' || actionType === 'ScoreForEmployee') {
+      this.processScoreAction();
+    } else {
+      this.update(this.prepareBotMessage());
+    }
+  }
+
+
+  private processScheduleAction() {
+    console.log(this.res);
+    if (!(typeof this.res.result['parameters']['date-time'] === 'undefined')) {
+      const date = this.res.result['parameters']['date-time'];
+      if ( date !== '') {
+        const dates: string[] = date.split('/', 2);
+        if (dates.length === 2) {
+          this.scheduleService.getScheduleForWeek(dates[0]);
+        } else if (dates.length === 1) {
+          this.scheduleService.getScheduleForDay(dates[0]);
+        }
+        this.update(this.prepareBotMessage());
+      } else {
+        this.update(this.prepareBotMessage());
+      }
+    } else {
+      this.update(this.prepareBotMessage());
+    }
+  }
+
+  private processScoreAction() {
+
+    if (!(typeof this.res.result['parameters']['Subject'] === 'undefined')) {
+      const subject = this.res.result['parameters']['Subject'];
+      if (subject !== '') {
+        const subjectObservable =  this.subjectService.getSubjectByNameObservable(subject);
+        subjectObservable.subscribe((subjectFromDB: Subject) => {
+          console.log(subjectFromDB);
+          if (subjectFromDB !== null) {
+            this.scoreService.getScoresBySubject(subjectFromDB.id);
+            this.update(this.prepareBotMessage());
+          } else if (subjectFromDB === null) {
+            this.client.textRequest('stop');
+            this.update(new Message('Cannot find Subject in out Database', 'bot'));
+            return;
+          }
+        });
+      } else {
+        this.update(this.prepareBotMessage());
+      }
+    } else {
+      this.update(this.prepareBotMessage());
+    }
+  }
 
   // Adds message to source
   update(msg: Message) {
     this.conversation.next([msg]);
+  }
+
+  private prepareBotMessage(): Message {
+    const speech = this.res.result.fulfillment.speech;
+    return new Message(speech, 'bot');
   }
 
 }

@@ -31,7 +31,7 @@ public class ScheduleController {
     @RequestMapping(path = "/getStudentScheduleForDay", method = RequestMethod.GET)
     @ResponseBody
     public Plan getStudentScheduleForDay(@RequestParam(value="index", required = true) String index,
-                                         @RequestParam(value="date", required=true) @DateTimeFormat(pattern="dd-MM-yyyy") Date date) {
+                                         @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForStudentByDay(index,date);
     }
@@ -39,7 +39,7 @@ public class ScheduleController {
     @RequestMapping(path = "/getStudentScheduleForWeek", method = RequestMethod.GET)
     @ResponseBody
     public Plan getStudentScheduleForWeek(@RequestParam(value="index", required = true) String index,
-                                         @RequestParam(value="date", required=true) @DateTimeFormat(pattern="dd-MM-yyyy") Date date) {
+                                         @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForStudentByWeek(index,date);
     }
@@ -53,7 +53,7 @@ public class ScheduleController {
     @RequestMapping(path = "/getEmployeeScheduleForDay", method = RequestMethod.GET)
     @ResponseBody
     public Plan getEmployeeScheduleForDay(@RequestParam(value="universityNick", required = true) String universityNick,
-                                         @RequestParam(value="date", required=true) @DateTimeFormat(pattern="dd-MM-yyyy") Date date) {
+                                         @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForEmployeeByDay(universityNick,date);
     }
@@ -61,7 +61,7 @@ public class ScheduleController {
     @RequestMapping(path = "/getEmployeeScheduleForWeek", method = RequestMethod.GET)
     @ResponseBody
     public Plan getEmployeeScheduleForWeek(@RequestParam(value="universityNick", required = true) String universityNick,
-                                          @RequestParam(value="date", required=true) @DateTimeFormat(pattern="dd-MM-yyyy") Date date) {
+                                          @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForEmployeeByWeek(universityNick,date);
     }
