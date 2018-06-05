@@ -1,8 +1,6 @@
-Test2
-<div *ngIf="scores !==null">
-  <ul>
-    <li *ngFor="let score of scores">
-      Name: {{ score.name }},
-      Value: {{ score.value }},
-  </ul>
+<div *ngIf="scores !==[]">
+  <jqxDataTable #myTable
+                [width]="700" [height]="550" [source]="dataAdapter" [columns]="columns" [columnGroups]="columngroups" [altRows]="true"
+                [pageable]="true" [columnsResize]="true" [pagerButtonsCount]="10">
+  </jqxDataTable>
 </div>

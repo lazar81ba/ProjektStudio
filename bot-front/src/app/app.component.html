@@ -1,11 +1,15 @@
-<div class="container">
-<div class="row">
-  <div class="cols-xs-2 col-sm-2 col-md-2 col-lg-2">
-    <action-content></action-content>
-  </div>
-  <div class="main cols-xs-8 col-sm-8 col-md-8 col-lg-8">
-    <router-outlet></router-outlet>
-  </div>
-  <div class="cols-xs-2 col-sm-2 col-md-2 col-lg-2"></div>
-</div>
+<!--<div class="container">-->
+  <!--<div class="row">-->
+    <!--<div class="action cols-xs-8 col-sm-8 col-md-8 col-lg-8" >-->
+      <!--<action-content></action-content>-->
+    <!--</div>-->
+    <!--<div class="main cols-xs-4 col-sm-4 col-md-4 col-lg-4">-->
+      <!--<router-outlet></router-outlet>-->
+    <!--</div>-->
+  <!--</div>-->
+<!--</div>-->
+
+<div class="flex-containter">
+  <action-content class="element"></action-content>
+  <router-outlet class="element"></router-outlet>
 </div>

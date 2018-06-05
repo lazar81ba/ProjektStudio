@@ -1,2 +1,4 @@
-<scores *ngIf="currentAction === 'scores'" [scores]="scores"></scores>
-<schedule *ngIf="currentAction === 'schedule'" [schedules]="schedules"></schedule>
+<div class="component" *ngIf="currentAction !==null">
+  <scores *ngIf="currentAction === 'scores'" [scores]="scores" [update]="updateComponent"></scores>
+  <schedule #scheduler *ngIf="currentAction === 'schedule'" [schedules]="schedules" [update]="updateComponent"></schedule>
+</div>

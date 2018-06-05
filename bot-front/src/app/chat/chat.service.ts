@@ -38,14 +38,18 @@ export class ChatService {
     return this.client.textRequest(msg)
       .then(res => {
         this.res = res;
-        let role = null;
-        if (!(typeof res.result['parameters']['Role'] === 'undefined')) {
-           role = res.result['parameters']['Role'];
-        }
-        if (!this.authorizeRole(role)) {
-          this.stopConversation();
+        if (!(typeof res.result['parameters'] === 'undefined')) {
+          let role = null;
+          if (!(typeof res.result['parameters']['Role'] === 'undefined')) {
+            role = res.result['parameters']['Role'];
+          }
+          if (!this.authorizeRole(role)) {
+            this.stopConversation();
+          } else {
+            this.processAction();
+          }
         } else {
-          this.processAction();
+          this.update(new Message('Cannot understand what you said', 'bot'));
         }
       });
   }

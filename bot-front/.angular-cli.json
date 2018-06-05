@@ -19,6 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "",
       "styles": [
+        "../node_modules/jqwidgets-framework/jqwidgets/styles/jqx.base.css",
         "styles.css"
       ],
       "scripts": [],

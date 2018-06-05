@@ -4,7 +4,6 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import index from '@angular/cli/lib/cli';
 import {ScheduleList} from '../model/ScheduleList';
 import {Subject} from 'rxjs/Subject';
-import {ActivatedRoute, Router} from '@angular/router';
 
 @Injectable()
 export class ScheduleService {

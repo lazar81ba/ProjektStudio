@@ -16,6 +16,9 @@ import {ActionContentComponent} from './action-content/action-content.component'
 import {ScoresComponent} from './action-content/scores/scores.component';
 import {ScheduleComponent} from './action-content/schedule/schedule.component';
 import {SubjectService} from './shared/subject.service';
+import { jqxSchedulerComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxscheduler';
+import { jqxDataTableComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable';
+
 
 
 @NgModule({
@@ -24,14 +27,16 @@ import {SubjectService} from './shared/subject.service';
     AuthComponent,
     ActionContentComponent,
     ScoresComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    jqxSchedulerComponent,
+    jqxDataTableComponent
   ],
   imports: [
     BrowserModule,
     ChatModule,
     FormsModule,
     AppRouteModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [UserAuthService, ScheduleService, AuthGuardService, ScoresService, SubjectService],
   bootstrap: [AppComponent]

@@ -15,5 +15,13 @@
       "es2017",
       "dom"
     ]
-  }
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "files": [
+    "node_modules/jqwidgets-framework/jqwidgets-ts/angular_jqxscheduler.ts",
+    "node_modules/jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable.ts"
+
+  ]
 }

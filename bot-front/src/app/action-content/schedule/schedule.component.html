@@ -1,8 +1,14 @@
-Test1
-<div *ngIf="schedules !== null">
-  <ul>
-    <li *ngFor="let schedule of schedules">
-      DateStart: {{ schedule.dateStart }},
-      DateEnd: {{ schedule.dateEnd }},
-  </ul>
+<div *ngIf="schedules !== []">
+  <jqxScheduler class="schedule"
+                #scheduler
+                [width]="700" [height]="550"
+                [date]="date"
+                [source]="dataAdapter"
+                [resources]="resources"
+                [showLegend]="true"
+                [view]="'monthView'"
+                [views]="views"
+                [appointmentDataFields]="appointmentDataFields">
+  </jqxScheduler>
 </div>
+

@@ -36,6 +36,6 @@ export class ChatDialogComponent implements OnInit {
   }
 
   onTest2() {
-    this.scoreService.getScoresBySubject(1);
+    this.scoreService.getScoresBySubject(2);
   }
 }
