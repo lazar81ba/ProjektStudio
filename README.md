@@ -1,7 +1,7 @@
 # ProjektStudio
 
 ## Overview
-This repository contains university project.
+This repository contains university project which is a web application designed for improving interaction beetween university and students or teachers. It uses conversation with bot as main communication interface. Bot recognize questions about plan, grades, consultations. Student cannot ask about grades for all students and therefore teacher cannot ask about concrete student grades. Also question about consultation is only available for student. Project is divided into backend made in Spring framework for Java language and frontend made in Angular framework for JavaScript language. Backend side is designed as REST and uses Postgres database for storing all neccessary data. Backend also uses docker because of easy way to set up whole environment. Frontend side is mostly created by us but we used outside technologies like Dialogflow and jqWidgets. Dialogflow is technology which use machine learning to recognize conversation context and necceserry information like role or action type while having conversation with user. We also used jqWidgets Angular 6 UI Components for displaying plan, consultations and scores. 
 
 ## How to run
 
@@ -10,6 +10,8 @@ This project require a few tool to run:
 - Maven
 - Docker
 - Docker Compose
+- Angular 6 with CLI
+- NodeJS (npm)
 
 If you are using Windows or Mac, you will additionally need:
 - VirtualBox
@@ -37,7 +39,7 @@ docker-machine env docker-bot
 eval $(docker-machine env docker-bot)
 ```
 
-## Build an current version of this project
+## Build an current version of this project backend
 To build project you need to run below command in these subdirectories: \BotRest
 ```
 # run this command after any changes in application code
@@ -65,6 +67,19 @@ You can access your app by typing in you browser:
 <your docker-machine ip address>:8080
 # for example: 192.168.99.100:8080
 ```
+## Build an current version of this project frontend
+To build project you need to run below command in these subdirectories: \bot-front
+``` 
+npm install
+ng serve
+```
+You can now use our application. To log in we prepared following test credentials:
+```
+Role: Teacher, Index: adasow, Password: test
+Role: Student, Index: 253233, Password: test
+```
+The best date period for testing our application is 04.06.2018 - 10.06.2018.
+
 
 ## Connecting to databases
 
