@@ -1,22 +1,3 @@
-INSERT INTO public.role (name) VALUES
-  ('Student'),
-  ('Prowadzacy');
-
-INSERT INTO public.user (university_index,password,active,id_role) VALUES
-  ('254213','password1',TRUE ,1),
-  ('223123','password2',TRUE,1),
-  ('253233','password3',TRUE,1),
-  ('adasow','password11',TRUE,2),
-  ('tomwal','password12',TRUE,2),
-  ('alekow','password12',TRUE,2),
-  ('testProwadzacy2','password12',TRUE,2);
-
-INSERT INTO public.specialization (name) VALUES
-  ('Informatyka'),
-  ('Automatyka'),
-  ('Teleinformatyka');
-
-
 INSERT INTO public.group (name,year,id_specialization) VALUES
   ('1a',2018,1),
   ('1b',2018,1),
@@ -36,7 +17,7 @@ INSERT INTO public.subject (name,description) VALUES
   ('Matematyka 1', 'Matematyka wprowadzajaca'),
   ('Fizyka 1', 'Fizyka wprowadzajaca'),
   ('Wprowadzenie do informatyki', 'Informatyka na 1. stopniu informatyki'),
-  ('Programowanie obektowe', 'Podstawy programowania obiektowego'),
+  ('Programowanie obiektowe', 'Podstawy programowania obiektowego'),
   ('Sieci' , 'Podstawy nauki o sieciach'),
   ('Bazy danych' , 'Bazy danych SQL');
 
@@ -81,18 +62,18 @@ INSERT INTO public.assignation (id_subject,id_employee) VALUES
   (6,3);
 
 INSERT INTO public.schedule (id_subject,id_group,id_room,data_start,data_end) VALUES
-  (1,1,1,'2018-06-06 10:00:00','2018-06-06 11:30:00'),
-  (1,2,1,'2018-06-07 10:00:00','2018-06-07 11:30:00'),
-  (1,5,1,'2018-06-06 11:30:00','2018-06-06 13:00:00'),
-  (1,6,1,'2018-06-07 11:30:00','2018-06-07 13:00:00'),
-  (2,1,2,'2018-06-09 08:00:00','2018-06-09 09:30:00'),
-  (2,2,2,'2018-06-09 09:30:00','2018-06-09 11:00:00'),
-  (2,5,2,'2018-06-09 11:00:00','2018-06-09 12:30:00'),
-  (2,6,2,'2018-06-09 12:30:00','2018-06-09 14:00:00'),
-  (3,1,3,'2018-06-10 12:30:00','2018-06-10 14:00:00'),
-  (3,2,3,'2018-06-10 14:00:00','2018-06-10 15:30:00'),
-  (3,5,3,'2018-06-10 15:30:00','2018-06-10 17:00:00'),
-  (3,6,3,'2018-06-10 17:00:00','2018-06-10 18:30:00');
-  
-
-
+  (1,2,1,'2018-06-03 10:00:00','2018-06-03 11:30:00'),
+  (1,2,1,'2018-06-04 10:00:00','2018-06-04 11:30:00'),
+  (1,5,1,'2018-06-03 11:30:00','2018-06-03 13:00:00'),
+  (1,6,1,'2018-06-04 11:30:00','2018-06-04 13:00:00'),
+  (2,1,2,'2018-06-05 08:00:00','2018-06-05 09:30:00'),
+  (2,2,2,'2018-06-05 09:30:00','2018-06-05 11:00:00'),
+  (2,5,2,'2018-06-05 11:00:00','2018-06-05 12:30:00'),
+  (2,6,2,'2018-06-05 12:30:00','2018-06-05 14:00:00'),
+  (3,1,3,'2018-06-06 12:30:00','2018-06-06 14:00:00'),
+  (3,2,3,'2018-06-06 14:00:00','2018-06-06 15:30:00'),
+  (3,5,3,'2018-06-06 15:30:00','2018-06-06 17:00:00'),
+  (3,6,3,'2018-06-06 17:00:00','2018-06-06 18:30:00'),
+  (4,2,4,'2018-06-07 08:00:00','2018-06-07 10:00:00'),
+  (5,2,5,'2018-06-07 13:30:00','2018-06-07 16:00:00'),
+  (6,2,1,'2018-06-08 11:30:00','2018-06-08 15:00:00');
