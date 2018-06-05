@@ -1,3 +1,21 @@
+INSERT INTO public.role (name) VALUES
+  ('Student'),
+  ('Prowadzacy');
+
+INSERT INTO public.user (university_index,password,active,id_role) VALUES
+  ('254213','password1',TRUE ,1),
+  ('223123','password2',TRUE,1),
+  ('253233','password3',TRUE,1),
+  ('adasow','password11',TRUE,2),
+  ('tomwal','password12',TRUE,2),
+  ('alekow','password12',TRUE,2),
+  ('testProwadzacy2','password12',TRUE,2);
+
+INSERT INTO public.specialization (name) VALUES
+  ('Informatyka'),
+  ('Automatyka'),
+  ('Teleinformatyka');
+
 INSERT INTO public.group (name,year,id_specialization) VALUES
   ('1a',2018,1),
   ('1b',2018,1),
@@ -22,24 +40,24 @@ INSERT INTO public.subject (name,description) VALUES
   ('Bazy danych' , 'Bazy danych SQL');
 
 INSERT INTO public.score (value,name,id_student,id_subject) VALUES
-  (5,'5.0',1,1),
-  (2,'2.0',2,1),
-  (3,'3.0',3,1),
-  (4,'4.0',1,2),
-  (4,'4.0',2,2),
-  (5,'5.0',3,2),
-  (3.5,'3.5',1,3),
-  (4.5,'4.5',2,3),
-  (5,'5.0',3,3),
-  (3,'3.0',1,4),
-  (3,'3.0',2,4),
-  (3,'3.0',3,4),
-  (2,'2.0',1,5),
-  (2,'2.0',2,5),
-  (3.5,'3.5',3,5),
-  (5,'5.0',1,6),
-  (4.5,'4.5',2,6),
-  (4,'4.0',3,6);
+  (5,'Kolokwium',1,1),
+  (2,'Kolokwium',2,1),
+  (3,'Kolokwium',3,1),
+  (4,'Kolokwium',1,2),
+  (4,'Kolokwium',2,2),
+  (5,'Projekt',3,2),
+  (3.5,'Projekt',1,3),
+  (4.5,'Projekt',2,3),
+  (5,'Laboratorium',3,3),
+  (3,'Laboratorium',1,4),
+  (3,'Laboratorium',2,4),
+  (3,'Laboratorium',3,4),
+  (2,'Laboratorium',1,5),
+  (2,'Kolokwium',2,5),
+  (3.5,'Kolokwium',3,5),
+  (5,'Kolokwium',1,6),
+  (4.5,'Kolokwium',2,6),
+  (4,'Kolokwium',3,6);
   
 
 INSERT INTO public.room (name,building,level) VALUES
@@ -53,6 +71,7 @@ INSERT INTO public.employee (name,surname,birth_date,consultation_day,start_cons
   ('Adam','Sowa','1975-12-01','Monday','12:00','13:00','adasow',2),
   ('Tomasz','Walczak','1981-06-20','Firday','17:00','18:00','tomwal',1),
   ('Aleksandra','Kowalska','1991-08-25','Thursday','10:00','11:00','alekow',3);
+  
 INSERT INTO public.assignation (id_subject,id_employee) VALUES
   (1,1),
   (2,1),
