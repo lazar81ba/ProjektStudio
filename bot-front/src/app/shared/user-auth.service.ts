@@ -3,7 +3,7 @@ import {User} from '../model/User';
 export class UserAuthService {
   users: User[] = [
     new User('253233', 'test', 'Student'),
-    new User('test2', 'test', 'Teacher'),
+    new User('adasow', 'test', 'Teacher'),
   ];
 
   private loggedUser: User;

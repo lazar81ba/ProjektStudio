@@ -109,7 +109,6 @@ export class ChatService {
       if (subject !== '') {
         const subjectObservable =  this.subjectService.getSubjectByNameObservable(subject);
         subjectObservable.subscribe((subjectFromDB: Subject) => {
-          console.log(subjectFromDB);
           if (subjectFromDB !== null) {
             this.scoreService.getScoresBySubject(subjectFromDB.id);
             this.update(this.prepareBotMessage());

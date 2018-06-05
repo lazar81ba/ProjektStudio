@@ -14,7 +14,7 @@ export class ScheduleComponent implements  AfterViewInit , OnChanges {
   @ViewChild('scheduler') myScheduler: jqxSchedulerComponent;
   @Input() schedules: Schedule[] = [];
   @Input() update = false;
-
+  @Input() isConsultation = false;
 
   date: any = new jqx.date(new Date());
 

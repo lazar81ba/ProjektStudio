@@ -21,6 +21,7 @@ export class ActionContentComponent implements OnInit {
 
   public currentAction: string = null;
   public updateComponent = false;
+  public consultation = false;
 
   ngOnInit() {
     this.scoreService.scoresSubject.subscribe(
@@ -41,6 +42,7 @@ export class ActionContentComponent implements OnInit {
           this.currentAction = 'schedule';
           this.updateComponent = false;
         }
+        this.consultation= false;
         this.schedules = data.scheduleList;
       });
   }
