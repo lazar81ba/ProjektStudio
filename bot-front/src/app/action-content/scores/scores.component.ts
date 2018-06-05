@@ -43,12 +43,12 @@ export class ScoresComponent implements OnChanges, AfterViewInit {
 
   columns: any[] =
     [
-      { text: 'Name', datafield: 'studentName', columngroup: 'StudentDetails',  width: 120 },
-      { text: 'Surname', datafield: 'studentSurname', columngroup: 'StudentDetails', width: 120 },
-      { text: 'Index', datafield: 'index', columngroup: 'StudentDetails', width: 180 },
-      { text: 'Group', datafield: 'group', columngroup: 'StudentDetails', width: 80 },
-      { text: 'Score', datafield: 'score', width: 90 },
-      { text: 'Value', datafield: 'value',  cellsAlign: 'right', cellClassName: this.cellClass}
+      { text: 'Name', datafield: 'studentName', columngroup: 'StudentDetails',  width: 150 },
+      { text: 'Surname', datafield: 'studentSurname', columngroup: 'StudentDetails', width: 150 },
+      { text: 'Index', datafield: 'index', columngroup: 'StudentDetails', width: 100 },
+      { text: 'Group', datafield: 'group', columngroup: 'StudentDetails', width: 100 },
+      { text: 'Score', datafield: 'score', width: 150 },
+      { text: 'Value', datafield: 'value',  cellsAlign: 'center', width: 50, cellClassName: this.cellClass}
     ];
 
     columngroups: any[] =
@@ -86,71 +86,4 @@ export class ScoresComponent implements OnChanges, AfterViewInit {
   ngAfterViewInit(): void {
     this.updateGrid();
   }
-
-  // ngAfterViewInit() {
-  //   this.updateGrid();
-  // }
-
-//
-//   constructor() { }
-//
-//   source: any =
-//     {
-//       localdata: [{
-//         name: 'test',
-//         surname: 'test',
-//         index: 'test',
-//         group: 'test',
-//         score: 'test',
-//         value: 1
-//       }],
-//       datatype: 'array',
-//       datafields: [
-//         { name: 'name', type: 'string' },
-//         { name: 'surname', type: 'string' },
-//         { name: 'index', type: 'string' },
-//         { name: 'group', type: 'string' },
-//         { name: 'score', type: 'string' },
-//         { name: 'value', type: 'number' }
-//       ]
-//     };
-//   dataAdapter: any = new jqx.dataAdapter(this.source);
-//   //
-
-//
-// // , cellsrenderer: this.cellsrenderer
-//
-//
-//   columns: any[] =
-//     [
-//       { text: 'Name', datafield: 'name', width: 150 },
-//       { text: 'Surname', datafield: 'surname', width: 150 },
-//       { text: 'Index', datafield: 'index', width: 50},
-//       { text: 'Group', datafield: 'group', width: 150},
-//       { text: 'Score Details', datafield: 'score', align: 'center', width: 150 },
-//       { text: 'Value', datafield: 'value', width: 50 }
-//     ];
-//   //
-
-//
-//
-
-//
-//
-//
-//   private generateScores(): any[] {
-//     const newScores = new Array();
-//     for (const score of this.scores) {
-//       const newScore = {
-//         name: score.student.name ,
-//         surname: score.student.surname,
-//         index: score.student.index,
-//         group: score.student.group.name,
-//         score: score.name,
-//         value: score.value,
-//       };
-//       newScores.push(newScore);
-//     }
-//     return newScores;
-//   }
 }

@@ -83,7 +83,6 @@ export class ChatService {
 
 
   private processScheduleAction() {
-    console.log(this.res);
     if (!(typeof this.res.result['parameters']['date-time'] === 'undefined')) {
       const date = this.res.result['parameters']['date-time'];
       if ( date !== '') {

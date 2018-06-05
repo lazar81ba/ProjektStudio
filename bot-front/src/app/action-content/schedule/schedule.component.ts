@@ -48,7 +48,7 @@ export class ScheduleComponent implements  AfterViewInit , OnChanges {
       to: 'end',
       id: 'id',
       description: 'description',
-      location: 'place',
+      location: 'location',
       subject: 'subject',
       resourceId: 'calendar',
     };
@@ -77,6 +77,13 @@ export class ScheduleComponent implements  AfterViewInit , OnChanges {
       this.myScheduler.attrDate = new jqx.date(new Date());
     }
     this.dataAdapter = new jqx.dataAdapter(this.source) ;
+    let i = 1;
+    for (const schedule of this.schedules) {
+      this.myScheduler.setAppointmentProperty(i.toString(), 'resizable', false);
+      this.myScheduler.setAppointmentProperty(i.toString(), 'draggable', false);
+      this.myScheduler.setAppointmentProperty(i.toString(), 'readOnly', true);
+      i++;
+    }
 
     this.myScheduler.endAppointmentsUpdate();
   }
@@ -92,28 +99,16 @@ export class ScheduleComponent implements  AfterViewInit , OnChanges {
       const appointment = {
         id: i.toString(),
         description: schedule.subject.description ,
-        location: '',
+        location: schedule.room.name + ' ' + schedule.room.building + ' ' + schedule.room.level,
         subject: schedule.subject.name,
-        calendar: schedule.room.name + ' ' + schedule.room.building + ' ' + schedule.room.level,
+        calendar: schedule.subject.name,
         start: schedule.dateStart,
-        end: schedule.dateEnd,
-        resizable: false,
-        draggable: false,
-        readOnly: false
+        end: schedule.dateEnd
       };
       appointments.push(appointment);
       i++;
     }
 
     return appointments;
-  }
-
-
-  onTest3() {
-
-  }
-
-  onTest4() {
-
   }
 }
