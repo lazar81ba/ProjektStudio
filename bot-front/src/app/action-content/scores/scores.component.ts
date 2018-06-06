@@ -43,11 +43,11 @@ export class ScoresComponent implements OnChanges, AfterViewInit {
 
   columns: any[] =
     [
-      { text: 'Name', datafield: 'studentName', columngroup: 'StudentDetails',  width: 150 },
-      { text: 'Surname', datafield: 'studentSurname', columngroup: 'StudentDetails', width: 150 },
-      { text: 'Index', datafield: 'index', columngroup: 'StudentDetails', width: 100 },
-      { text: 'Group', datafield: 'group', columngroup: 'StudentDetails', width: 100 },
-      { text: 'Score', datafield: 'score', width: 150 },
+      { text: 'Name', datafield: 'studentName', columngroup: 'StudentDetails',  width: 125 },
+      { text: 'Surname', datafield: 'studentSurname', columngroup: 'StudentDetails', width: 125 },
+      { text: 'Index', datafield: 'index', columngroup: 'StudentDetails', width: 75 },
+      { text: 'Group', datafield: 'group', columngroup: 'StudentDetails', width: 125 },
+      { text: 'Score', datafield: 'score', width: 100 },
       { text: 'Value', datafield: 'value',  cellsAlign: 'center', width: 50, cellClassName: this.cellClass}
     ];
 
@@ -63,7 +63,7 @@ export class ScoresComponent implements OnChanges, AfterViewInit {
         studentName: score.student.name ,
         studentSurname: score.student.surname,
         index: score.student.index,
-        group: score.student.group.name,
+        group: score.student.group.name + ', ' + score.student.group.specialization.name + ' ' + score.student.group.year,
         score: score.name,
         value: score.value,
       };
