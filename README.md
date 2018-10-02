@@ -39,7 +39,7 @@ docker-machine env docker-bot
 eval $(docker-machine env docker-bot)
 ```
 
-## Build an current version of this project backend
+## Backend
 To build project you need to run below command in these subdirectories: \BotRest
 ```
 # run this command after any changes in application code
@@ -67,7 +67,7 @@ You can access your app by typing in you browser:
 <your docker-machine ip address>:8080
 # for example: 192.168.99.100:8080
 ```
-## Build an current version of this project frontend
+## Frontend
 To build project you need to run below command in these subdirectories: \bot-front
 ``` 
 npm install
