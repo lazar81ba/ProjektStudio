@@ -3,7 +3,7 @@ package com.studio.service;
 import com.studio.model.Subject;
 
 public interface SubjectService {
-
-    public Subject getSubjectById(Long id);
-    public Subject getSubjectByName(String name);
+    Iterable<Subject> getAllSubjects();
+    Subject getSubjectById(Long id);
+    Iterable<Subject> getSubjectByName(String name);
 }

@@ -7,14 +7,13 @@ import {map} from 'rxjs/operators';
 
 @Injectable()
 export class SubjectService {
-  private endpointPrefix = 'http://localhost:8080/';
-  private endpointSubjects = 'subjects/';
+  private endpointPrefix = 'http://localhost:8080/subjects';
 
 
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
 
   public getSubjectByNameObservable(name: string) {
-    return this.httpClient.get(this.endpointPrefix + this.endpointSubjects + name);
+    return this.httpClient.get(this.endpointPrefix + '?name=' + name);
   }
 
 }
