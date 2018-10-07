@@ -16,51 +16,47 @@ import java.util.Date;
 public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
-    @Autowired
-    private EmployeeDAO employeeDAO;
-    @Autowired
-    private SubjectDAO subjectDAO;
 
     @CrossOrigin(origins = "http://localhost:8080")
-    @RequestMapping(path = "/getStudentSchedule", method = RequestMethod.GET)
+    @RequestMapping(path = "/students/{index}/schedule", method = RequestMethod.GET)
     @ResponseBody
-    public Plan getStudentSchedule(@RequestParam(value="index", required = true) String index) {
+    public Plan getStudentSchedule(@PathVariable(value="index", required = true) String index) {
         return scheduleService.getPlanForStudent(index);
     }
 
-    @RequestMapping(path = "/getStudentScheduleForDay", method = RequestMethod.GET)
+    @RequestMapping(path = "/students/{index}/schedule/day", method = RequestMethod.GET)
     @ResponseBody
-    public Plan getStudentScheduleForDay(@RequestParam(value="index", required = true) String index,
+    public Plan getStudentScheduleForDay(@PathVariable(value="index", required = true) String index,
                                          @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForStudentByDay(index,date);
     }
 
-    @RequestMapping(path = "/getStudentScheduleForWeek", method = RequestMethod.GET)
+    @RequestMapping(path = "/students/{index}/schedule/week", method = RequestMethod.GET)
     @ResponseBody
-    public Plan getStudentScheduleForWeek(@RequestParam(value="index", required = true) String index,
+    public Plan getStudentScheduleForWeek(@PathVariable(value="index", required = true) String index,
                                          @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForStudentByWeek(index,date);
     }
 
-    @RequestMapping(path = "/getEmployeeSchedule", method = RequestMethod.GET)
+    @RequestMapping(path = "/employees/{universityNick}/schedule", method = RequestMethod.GET)
     @ResponseBody
-    public Plan getEmployeeSchedule(@RequestParam(value="universityNick", required = true) String universityNick) {
+    public Plan getEmployeeSchedule(@PathVariable(value="universityNick", required = true) String universityNick) {
         return scheduleService.getPlanForEmployee(universityNick);
     }
 
-    @RequestMapping(path = "/getEmployeeScheduleForDay", method = RequestMethod.GET)
+    @RequestMapping(path = "/employees/{universityNick}/schedule/day", method = RequestMethod.GET)
     @ResponseBody
-    public Plan getEmployeeScheduleForDay(@RequestParam(value="universityNick", required = true) String universityNick,
+    public Plan getEmployeeScheduleForDay(@PathVariable(value="universityNick", required = true) String universityNick,
                                          @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForEmployeeByDay(universityNick,date);
     }
 
-    @RequestMapping(path = "/getEmployeeScheduleForWeek", method = RequestMethod.GET)
+    @RequestMapping(path = "/employees/{universityNick}/schedule/week", method = RequestMethod.GET)
     @ResponseBody
-    public Plan getEmployeeScheduleForWeek(@RequestParam(value="universityNick", required = true) String universityNick,
+    public Plan getEmployeeScheduleForWeek(@PathVariable(value="universityNick", required = true) String universityNick,
                                           @RequestParam(value="date", required=true) @DateTimeFormat(pattern="yyyy-MM-dd") Date date) {
 
         return scheduleService.getPlanForEmployeeByWeek(universityNick,date);

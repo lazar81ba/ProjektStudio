@@ -13,7 +13,8 @@ export class SubjectService {
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
 
   public getSubjectByNameObservable(name: string) {
-    return this.httpClient.get(this.endpointPrefix + '?name=' + name);
+    const params = new HttpParams().set('name', name);
+    return this.httpClient.get(this.endpointPrefix, {params});
   }
 
 }

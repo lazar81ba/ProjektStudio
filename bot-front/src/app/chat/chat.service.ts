@@ -63,7 +63,7 @@ export class ChatService {
 
   private stopConversation() {
     this.client.textRequest('stop');
-    this.update(new Message('You are not authorized for this operation. Try my different way.', 'bot'));
+    this.update(new Message('You are not authorized for this operation. Try me different way.', 'bot'));
   }
 
 
@@ -107,9 +107,9 @@ export class ChatService {
       const subject = this.res.result['parameters']['Subject'];
       if (subject !== '') {
         const subjectObservable =  this.subjectService.getSubjectByNameObservable(subject);
-        subjectObservable.subscribe((subjectFromDB: Subject) => {
+        subjectObservable.subscribe((subjectFromDB: Subject[]) => {
           if (subjectFromDB !== null) {
-            this.scoreService.getScoresBySubject(subjectFromDB.id);
+            this.scoreService.getScoresBySubject(subjectFromDB[0].id);
             this.update(this.prepareBotMessage());
           } else if (subjectFromDB === null) {
             this.client.textRequest('stop');

@@ -13,27 +13,23 @@ export class ScheduleService {
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
 
   private endpointPrefix = 'http://localhost:8080/';
-  private endpointStudentForWeek = 'getStudentScheduleForWeek';
-  private endpointStudentForDay = 'getStudentScheduleForDay';
-  private endpointStudent = 'getStudentSchedule';
-  private endpontEmployeeForWeek = 'getEmployeeScheduleForWeek';
-  private endpointEmployeeForDay = 'getEmployeeScheduleForDay';
-  private endpointEmployee = 'getEmployeeSchedule';
+  private endpointStudents = 'students/';
+  private endpointEmployees = 'employees/';
+  private endpointSchedule = '/schedule';
 
-
-  public getScheduleForStudent() {
-    let params;
+  public getSchedule() {
+     // let params;
     if (this.userService.getUserRole() === 'Student') {
-      params = new HttpParams().set('index', this.userService.getUserIndex());
-      this.httpClient.get(this.endpointPrefix + this.endpointStudent, {params})
+      // params = new HttpParams().set('index', this.userService.getUserIndex());
+      this.httpClient.get(this.endpointPrefix + this.endpointStudents + this.userService.getUserIndex() + this.endpointSchedule)
         .subscribe((data: ScheduleList) => {
           this.scheduleSubject.next(data);
 
         });
       }
     if (this.userService.getUserRole() === 'Teacher') {
-      params = new HttpParams().set('index', this.userService.getUserIndex());
-      this.httpClient.get(this.endpointPrefix + this.endpointEmployee, {params})
+      // params = new HttpParams().set('index', this.userService.getUserIndex());
+      this.httpClient.get(this.endpointPrefix + this.endpointEmployees + this.userService.getUserIndex() + this.endpointSchedule)
         .subscribe((data: ScheduleList) => {
           this.scheduleSubject.next(data);
         });
@@ -43,16 +39,18 @@ export class ScheduleService {
   public getScheduleForWeek(date: string) {
     let params;
     if (this.userService.getUserRole() === 'Student') {
-      params = new HttpParams().set('index', this.userService.getUserIndex()).set('date', date);
-      this.httpClient.get(this.endpointPrefix + this.endpointStudentForWeek, {params})
+      params = new HttpParams().set('date', date);
+      this.httpClient.get(this.endpointPrefix + this.endpointStudents + this.userService.getUserIndex() + this.endpointSchedule + '/week',
+                      {params})
         .subscribe((data: ScheduleList) => {
           this.scheduleSubject.next(data);
         });
     }
 
     if (this.userService.getUserRole() === 'Teacher') {
-      params = new HttpParams().set('universityNick', this.userService.getUserIndex()).set('date', date);
-      this.httpClient.get(this.endpointPrefix + this.endpontEmployeeForWeek, {params})
+      params = new HttpParams().set('date', date);
+      this.httpClient.get(this.endpointPrefix + this.endpointEmployees + this.userService.getUserIndex() + this.endpointSchedule + '/week',
+                      {params})
         .subscribe((data: ScheduleList) => {
           this.scheduleSubject.next(data);
         });
@@ -62,16 +60,18 @@ export class ScheduleService {
   public getScheduleForDay(date: string) {
     let params;
     if (this.userService.getUserRole() === 'Student') {
-      params = new HttpParams().set('index', this.userService.getUserIndex()).set('date', date);
-      this.httpClient.get(this.endpointPrefix + this.endpointStudentForDay, {params})
+      params = new HttpParams().set('date', date);
+      this.httpClient.get(this.endpointPrefix + this.endpointStudents + this.userService.getUserIndex() + this.endpointSchedule + '/day',
+              {params})
         .subscribe((data: ScheduleList) => {
           this.scheduleSubject.next(data);
         });
     }
 
     if (this.userService.getUserRole() === 'Teacher') {
-      params = new HttpParams().set('universityNick', this.userService.getUserIndex()).set('date', date);
-      this.httpClient.get(this.endpointPrefix + this.endpointEmployeeForDay, {params})
+      params = new HttpParams().set('date', date);
+      this.httpClient.get(this.endpointPrefix + this.endpointEmployees + this.userService.getUserIndex() + this.endpointSchedule + '/day',
+        {params})
         .subscribe((data: ScheduleList) => {
           this.scheduleSubject.next(data);
         });

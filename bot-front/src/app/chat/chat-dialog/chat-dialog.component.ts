@@ -32,7 +32,7 @@ export class ChatDialogComponent implements OnInit {
   }
 
   onTest() {
-    this.scheduleService.getScheduleForStudent();
+    this.scheduleService.getSchedule();
   }
 
   onTest2() {
