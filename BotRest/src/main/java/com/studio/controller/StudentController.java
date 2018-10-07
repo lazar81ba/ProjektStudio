@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequestMapping(path = "/students")
 public class StudentController {
 
 
     @Autowired
     private StudentService studentService;
 
-    @RequestMapping(path = "/students", method = RequestMethod.GET)
+    @RequestMapping(path = "", method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Student> getAll(@RequestParam(value="groupId", required = false) Long groupId,
                                     @RequestParam(value="subjectId", required = false) Long subjectId) {
@@ -21,20 +22,20 @@ public class StudentController {
     }
 
 
-    @RequestMapping(path = "/students/{index}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{index}", method = RequestMethod.GET)
     @ResponseBody
     public Student getStudent(@PathVariable(value="index", required = true) String index) {
         return studentService.getStudentByIndex(index);
     }
 
 
-    @RequestMapping(path = "/students/group/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/group/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Student> getStudentsByGroup(@PathVariable(value="id", required = true) Long id) {
         return studentService.getAllStudentsByGroup(id);
     }
 
-    @RequestMapping(path = "/students/subject/{id}", method = RequestMethod.GET)
+    @RequestMapping(path = "/subject/{id}", method = RequestMethod.GET)
     @ResponseBody
     public Iterable<Student> getStudentsBySubject(@PathVariable(value="id", required = true) Long id) {
         return studentService.getAllStudentsBySubject(id);
