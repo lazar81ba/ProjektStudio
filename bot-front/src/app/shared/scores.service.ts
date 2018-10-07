@@ -6,26 +6,25 @@ import {Subject} from 'rxjs/Subject';
 
 @Injectable()
 export class ScoresService {
-  private endpointPrefix = 'http://localhost:8080/';
-  private endpointStudentScoresBySubject = 'getStudentScoresBySubject';
-  private endpointScoresBySubject = 'getScoresBySubject';
-
+  private endpointPrefix = 'http://localhost:8080/students/';
+  private endpointScoresSubjects = '/scores/subject/';
+  
   public scoresSubject = new Subject<Score[]>();
 
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
 
   public getScoresBySubject(id: number) {
-    let params;
+    // let params;
     if (this.userService.getUserRole() === 'Student') {
-      params = new HttpParams().set('index', this.userService.getUserIndex()).set('subjectId', id.toString());
-      this.httpClient.get(this.endpointPrefix + this.endpointStudentScoresBySubject, {params})
+      // params = new HttpParams().set('index', this.userService.getUserIndex()).set('subjectId', id.toString());
+      this.httpClient.get(this.endpointPrefix + this.userService.getUserIndex() + this.endpointScoresSubjects + id)
         .subscribe((data: Score[]) => {
           this.scoresSubject.next(data);
         });
     }
     if (this.userService.getUserRole() === 'Teacher') {
-      params = new HttpParams().set('subjectId', id.toString());
-      this.httpClient.get(this.endpointPrefix + this.endpointScoresBySubject, {params})
+      // params = new HttpParams().set('subjectId', id.toString());
+      this.httpClient.get(this.endpointPrefix + this.endpointScoresSubjects + id)
         .subscribe((data: Score[]) => {
           this.scoresSubject.next(data);
         });
