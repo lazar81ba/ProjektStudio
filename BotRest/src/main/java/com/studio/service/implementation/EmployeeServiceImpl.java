@@ -13,8 +13,8 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Autowired
     EmployeeDAO employeeDAO;
 
-    public Consultation getEmployeeConsultation(String name, String surname){
-        Employee employee = employeeDAO.getEmployeeByNameAndSurname(name,surname);
+    public Consultation getEmployeeConsultation(String university_nick){
+        Employee employee = employeeDAO.findByUniversityNick(university_nick);
         return new Consultation(employee.getStartConsultationTime(),employee.getEndConsultationTime()
                 ,employee.getConsultationDay(),employee.getRoom());
     }

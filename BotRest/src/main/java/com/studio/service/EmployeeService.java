@@ -4,5 +4,5 @@ import com.studio.model.Consultation;
 
 public interface EmployeeService {
 
-    public Consultation getEmployeeConsultation(String name, String surname);
+    public Consultation getEmployeeConsultation(String university_nick);
 }

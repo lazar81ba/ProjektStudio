@@ -5,5 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface EmployeeDAO extends CrudRepository<Employee,Long>
 {
-    public Employee getEmployeeByNameAndSurname(String name,String surname);
+    public Employee findById(Long id);
+    public Employee findByUniversityNick(String universityNick);
 }

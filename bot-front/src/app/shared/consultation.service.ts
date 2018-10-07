@@ -9,9 +9,7 @@ export class ConsultationService {
   public consultationSubject = new Subject<ScheduleList>();
 
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
-  private endpointPrefix = 'http://localhost:8080/';
-  private endpointConsultation = 'getConsultationByNameAndSurname';
-
+  private endpointPrefix = 'http://localhost:8080/employees/';
 
   public getConsultationByNameAndSurname(name: string, surname: string) {
     // let params;
