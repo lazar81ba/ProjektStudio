@@ -8,7 +8,7 @@ import {Subject} from 'rxjs/Subject';
 export class ScoresService {
   private endpointPrefix = 'http://localhost:8080/students/';
   private endpointScoresSubjects = '/scores/subject/';
-  
+
   public scoresSubject = new Subject<Score[]>();
 
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
