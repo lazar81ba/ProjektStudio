@@ -3,13 +3,15 @@ import {Subject} from 'rxjs/Subject';
 import {ScheduleList} from '../model/ScheduleList';
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {UserAuthService} from './user-auth.service';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class ConsultationService {
   public consultationSubject = new Subject<ScheduleList>();
 
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
-  private endpointPrefix = 'http://localhost:8080/employees/';
+  private endpointPrefix = environment.apiHost + '/employees/';
 
   public getConsultationByNameAndSurname(name: string, surname: string) {
     // let params;

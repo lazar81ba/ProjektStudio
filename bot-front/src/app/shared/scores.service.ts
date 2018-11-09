@@ -3,10 +3,12 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {UserAuthService} from './user-auth.service';
 import {Score} from '../model/Score';
 import {Subject} from 'rxjs/Subject';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class ScoresService {
-  private endpointPrefix = 'http://localhost:8080/students/';
+  private endpointPrefix = environment.apiHost + '/students/';
   private endpointScoresSubjects = '/scores/subject/';
 
   public scoresSubject = new Subject<Score[]>();

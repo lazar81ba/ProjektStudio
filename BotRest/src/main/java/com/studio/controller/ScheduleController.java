@@ -17,7 +17,6 @@ public class ScheduleController {
     @Autowired
     private ScheduleService scheduleService;
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @RequestMapping(path = "/students/{index}/schedule", method = RequestMethod.GET)
     @ResponseBody
     public Plan getStudentSchedule(@PathVariable(value="index", required = true) String index) {

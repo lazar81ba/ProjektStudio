@@ -4,10 +4,12 @@ import {Subject} from '../model/subject';
 import {Score} from '../model/Score';
 import {Injectable} from '@angular/core';
 import {map} from 'rxjs/operators';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class SubjectService {
-  private endpointPrefix = 'http://localhost:8080/subjects';
+  private endpointPrefix = environment.apiHost + '/subjects';
 
 
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}

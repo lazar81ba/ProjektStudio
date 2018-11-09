@@ -32,13 +32,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableTransactionManagement
 public class ApplicationConfig {
 
+    @Autowired
+    private Environment environment;
+
     @Bean
     public DataSource primaryDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        dataSource.setDriverClassName("org.postgresql.Driver");
-        dataSource.setUrl("jdbc:postgresql://database_0:5432/postgres");
-        dataSource.setUsername("postgres");
-        dataSource.setPassword("");
+        dataSource.setDriverClassName(environment.getProperty("jdbc.driverClassName"));
+        dataSource.setUrl(environment.getProperty("jdbc.url"));
+        dataSource.setUsername(environment.getProperty("jdbc.username"));
+        dataSource.setPassword(environment.getProperty("jdbc.password"));
 
         return dataSource;
     }

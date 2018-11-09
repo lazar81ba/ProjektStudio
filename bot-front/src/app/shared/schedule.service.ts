@@ -4,6 +4,8 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import index from '@angular/cli/lib/cli';
 import {ScheduleList} from '../model/ScheduleList';
 import {Subject} from 'rxjs/Subject';
+import { environment } from '../../environments/environment';
+
 
 @Injectable()
 export class ScheduleService {
@@ -12,7 +14,7 @@ export class ScheduleService {
 
   constructor(private httpClient: HttpClient, private userService: UserAuthService) {}
 
-  private endpointPrefix = 'http://localhost:8080/';
+  private endpointPrefix = environment.apiHost + '/';
   private endpointStudents = 'students/';
   private endpointEmployees = 'employees/';
   private endpointSchedule = '/schedule';
