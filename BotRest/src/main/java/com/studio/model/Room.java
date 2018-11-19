@@ -17,6 +17,9 @@ public class Room {
     private Integer level;
 
     @OneToMany(mappedBy = "room")
+    private Set<Consultation> consultations=new HashSet<>();
+
+    @OneToMany(mappedBy = "room")
     private Set<Schedule> schedules=new HashSet<>();
 
     @OneToMany(mappedBy = "room")
