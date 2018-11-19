@@ -112,7 +112,8 @@ CREATE TABLE IF NOT EXISTS public.consultation (
      primary key,
   data_start timestamp not null,
   data_end timestamp not null,
-  id_employee integer not null
+  id_employee integer not null,
+  id_room integer not null
 );
 
 CREATE TABLE IF NOT EXISTS public.assignation
@@ -125,6 +126,7 @@ CREATE TABLE IF NOT EXISTS public.assignation
 );
 
 
+ALTER TABLE public.consultation ADD CONSTRAINT consultation_room_fkey FOREIGN KEY (id_room) REFERENCES public.room(id);
 ALTER TABLE public.consultation ADD CONSTRAINT consultation_employee_fkey FOREIGN KEY (id_employee) REFERENCES public.employee(id);
 ALTER TABLE public.group ADD CONSTRAINT group_specialization_fkey FOREIGN KEY (id_specialization) REFERENCES public.specialization(id) ;
 ALTER TABLE public.student ADD CONSTRAINT student_group_fkey FOREIGN KEY (id_group) REFERENCES public.group(id) ;
