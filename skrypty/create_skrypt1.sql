@@ -73,10 +73,19 @@ INSERT INTO public.room (name,building,level) VALUES
   ('441','C3',4),
   ('112','C3',1);
 
-INSERT INTO public.employee (name,surname,birth_date,consultation_day,start_consultation_time,end_consultation_time,university_nick,id_room) VALUES
-  ('Adam','Sowa','1975-12-01','Monday','12:00','13:00','adasow',2),
-  ('Tomasz','Walczak','1981-06-20','Firday','17:00','18:00','tomwal',1),
-  ('Aleksandra','Kowalska','1991-08-25','Thursday','10:00','11:00','alekow',3);
+INSERT INTO public.employee (name,surname,birth_date,university_nick,id_room) VALUES
+  ('Adam','Sowa','1975-12-01','adasow',2),
+  ('Tomasz','Walczak','1981-06-20','tomwal',1),
+  ('Aleksandra','Kowalska','1991-08-25','alekow',3);
+
+INSERT INTO public.consultation (data_start,data_end,id_employee) VALUES
+  ('2018-06-05 16:00:00','2018-06-05 17:00:00', 1),
+  ('2018-06-12 16:00:00','2018-06-12 17:00:00', 1),
+  ('2018-06-19 16:00:00','2018-06-19 17:00:00', 1),
+  ('2018-06-03 14:00:00','2018-06-03 15:00:00', 2),
+  ('2018-06-10 14:00:00','2018-06-10 15:00:00', 2),
+  ('2018-06-17 14:00:00','2018-06-17 15:00:00', 2);
+
   
 INSERT INTO public.assignation (id_subject,id_employee) VALUES
   (1,1),
