@@ -129,6 +129,7 @@ export class ChatService {
 
 
   private processConsultationAction() {
+    let error = false;
     if (!(typeof this.res.result['parameters']['TeacherName'] === 'undefined')) {
       const teacherName: string = this.res.result['parameters']['TeacherName'] ;
       if (teacherName !== '') {
@@ -137,12 +138,13 @@ export class ChatService {
           this.scheduleService.getConsultationByNameAndSurname(teacherNameAndSurname[0], teacherNameAndSurname[1]);
         } else {
           this.update(new Message('You probably typed only name or surname.', 'bot'));
+          error = true;
         }
-      } else {
-        this.update(new Message('You probably typed something wrong', 'bot'));
       }
     }
-    this.update(this.prepareBotMessage());
+    if (!error) {
+      this.update(this.prepareBotMessage());
+    }
   }
 
   // Adds message to source

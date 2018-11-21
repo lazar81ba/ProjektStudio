@@ -32,7 +32,7 @@ export class ScheduleService {
           let id = 1;
           for (const consultation of data) {
             scheduleList.push(new Schedule(consultation.dateEnd, consultation.dateStart, null, consultation.room,
-              new SubjectModel(id++, 'Consultation', consultation.employee.name + consultation.employee.surname + ' consultation')));
+              new SubjectModel(id++, 'Consultation', consultation.employee.name + ' ' + consultation.employee.surname + ' consultation')));
           }
           this.scheduleSubject.next(new ScheduleList(scheduleList));
         });
