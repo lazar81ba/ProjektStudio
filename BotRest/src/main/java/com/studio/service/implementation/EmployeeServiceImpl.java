@@ -17,11 +17,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getEmployeesWithNameAndSurname(String name, String surname) {
-        return employeeDAO.findAllByNameAndSurname(name, surname);
+
+        return employeeDAO.findAllByNameAndSurname(changeFirstLetterToUpperCase(name), changeFirstLetterToUpperCase(surname));
     }
 
     @Override
     public Employee getEmployeeWithUniversityNick(String university_nick) {
         return employeeDAO.findByUniversityNick(university_nick);
+    }
+
+    private String changeFirstLetterToUpperCase(String string){
+        return Character.toUpperCase(string.charAt(0)) + string.substring(1);
     }
 }
