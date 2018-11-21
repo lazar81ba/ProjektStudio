@@ -18,7 +18,6 @@ import {ScheduleComponent} from './action-content/schedule/schedule.component';
 import {SubjectService} from './shared/subject.service';
 import { jqxSchedulerComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxscheduler';
 import { jqxDataTableComponent } from 'jqwidgets-framework/jqwidgets-ts/angular_jqxdatatable';
-import {ConsultationService} from './shared/consultation.service';
 
 
 
@@ -39,7 +38,7 @@ import {ConsultationService} from './shared/consultation.service';
     AppRouteModule,
     HttpClientModule,
   ],
-  providers: [UserAuthService, ScheduleService, AuthGuardService, ScoresService, SubjectService, ConsultationService],
+  providers: [UserAuthService, ScheduleService, AuthGuardService, ScoresService, SubjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

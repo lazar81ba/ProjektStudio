@@ -31,7 +31,7 @@ export class ScheduleService {
           const scheduleList: Schedule[] = [];
           let id = 1;
           for (const consultation of data) {
-            scheduleList.push(new Schedule(consultation.dateEnd, consultation.dataStart, null, consultation.room,
+            scheduleList.push(new Schedule(consultation.dateEnd, consultation.dateStart, null, consultation.room,
               new SubjectModel(id++, 'Consultation', consultation.employee.name + consultation.employee.surname + ' consultation')));
           }
           this.scheduleSubject.next(new ScheduleList(scheduleList));

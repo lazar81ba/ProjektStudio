@@ -76,6 +76,8 @@ export class ChatService {
       this.processScheduleAction();
     } else if (actionType === 'ScoreForStudent' || actionType === 'ScoreForEmployee') {
       this.processScoreAction();
+    } else if (actionType === 'Consultation') {
+     this.processConsultationAction();
     } else {
       this.update(this.prepareBotMessage());
     }
@@ -123,6 +125,24 @@ export class ChatService {
     } else {
       this.update(this.prepareBotMessage());
     }
+  }
+
+
+  private processConsultationAction() {
+    if (!(typeof this.res.result['parameters']['TeacherName'] === 'undefined')) {
+      const teacherName: string = this.res.result['parameters']['TeacherName'] ;
+      if (teacherName !== '') {
+        const teacherNameAndSurname = teacherName.split(' ');
+        if (teacherNameAndSurname.length === 2) {
+          this.scheduleService.getConsultationByNameAndSurname(teacherNameAndSurname[0], teacherNameAndSurname[1]);
+        } else {
+          this.update(new Message('You probably typed only name or surname.', 'bot'));
+        }
+      } else {
+        this.update(new Message('You probably typed something wrong', 'bot'));
+      }
+    }
+    this.update(this.prepareBotMessage());
   }
 
   // Adds message to source

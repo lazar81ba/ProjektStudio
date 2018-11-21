@@ -42,7 +42,7 @@ export class ActionContentComponent implements OnInit {
           this.currentAction = 'schedule';
           this.updateComponent = false;
         }
-        this.consultation= false;
+        this.consultation = false;
         this.schedules = data.scheduleList;
       });
   }
