@@ -131,8 +131,11 @@ export class ChatService {
   private processConsultationAction() {
     let error = false;
     if (!(typeof this.res.result['parameters']['TeacherName'] === 'undefined')) {
-      const teacherName: string = this.res.result['parameters']['TeacherName'] ;
+      let teacherName: string = this.res.result['parameters']['TeacherName'] ;
       if (teacherName !== '') {
+        if (teacherName[teacherName.length - 1] === ' ') {
+          teacherName = teacherName.substring(0, teacherName.length - 1);
+        }
         const teacherNameAndSurname = teacherName.split(' ');
         if (teacherNameAndSurname.length === 2) {
           this.scheduleService.getConsultationByNameAndSurname(teacherNameAndSurname[0], teacherNameAndSurname[1]);
