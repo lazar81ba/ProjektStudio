@@ -4,6 +4,9 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import index from '@angular/cli/lib/cli';
 import {ScheduleList} from '../model/ScheduleList';
 import {Subject} from 'rxjs/Subject';
+import {Subject as SubjectModel} from '../model/subject';
+import {Consultation} from '../model/Consultation';
+import {Schedule} from '../model/Schedule';
 
 @Injectable()
 export class ScheduleService {
@@ -16,6 +19,25 @@ export class ScheduleService {
   private endpointStudents = 'students/';
   private endpointEmployees = 'employees/';
   private endpointSchedule = '/schedule';
+  private endpointConsultation = 'http://localhost:8080/employees/consultation';
+
+
+  public getConsultationByNameAndSurname(name: string, surname: string) {
+    let params;
+    if (this.userService.getUserRole() === 'Student') {
+      params = new HttpParams().set('name', name).set('surname', surname);
+      this.httpClient.get(this.endpointConsultation, {params})
+        .subscribe((data: Consultation[]) => {
+          const scheduleList: Schedule[] = [];
+          let id = 1;
+          for (const consultation of data) {
+            scheduleList.push(new Schedule(consultation.dateEnd, consultation.dataStart, null, consultation.room,
+              new SubjectModel(id++, 'Consultation', consultation.employee.name + consultation.employee.surname + ' consultation')));
+          }
+          this.scheduleSubject.next(new ScheduleList(scheduleList));
+        });
+    }
+  }
 
   public getSchedule() {
      // let params;
