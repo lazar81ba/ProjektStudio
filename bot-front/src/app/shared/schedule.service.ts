@@ -21,14 +21,14 @@ export class ScheduleService {
   private endpointStudents = 'students/';
   private endpointEmployees = 'employees/';
   private endpointSchedule = '/schedule';
-  private endpointConsultation = 'consultation';
+  private endpointConsultation = 'consultation/';
 
 
   public getConsultationByNameAndSurname(name: string, surname: string) {
     let params;
     if (this.userService.getUserRole() === 'Student') {
       params = new HttpParams().set('name', name).set('surname', surname);
-      this.httpClient.get(this.endpointConsultation, {params})
+      this.httpClient.get(this.endpointPrefix + this.endpointConsultation, {params})
         .subscribe((data: Consultation[]) => {
           const scheduleList: Schedule[] = [];
           let id = 1;
