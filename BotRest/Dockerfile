@@ -9,4 +9,4 @@ ENV DEBUG_PORT=8000
 EXPOSE $SERVER_PORT
 EXPOSE $DEBUG_PORT
 
-CMD ["java" ,"-Djava.security.egd=file:/dev/./urandom", "-jar" ,"/app.jar"]
+ENTRYPOINT ["java" ,"-Djava.security.egd=file:/dev/./urandom", "-jar" ,"/app.jar"]
