@@ -102,10 +102,17 @@ CREATE TABLE IF NOT EXISTS public.employee
   name varchar(255),
   surname varchar(255),
   birth_date date,
-  start_consultation_time TIME,
-  end_consultation_time TIME,
-  consultation_day varchar(255),
   university_nick varchar(255) unique,
+  id_room integer not null
+);
+
+CREATE TABLE IF NOT EXISTS public.consultation (
+  id serial not null
+     constraint consultation_pkey
+     primary key,
+  data_start timestamp not null,
+  data_end timestamp not null,
+  id_employee integer not null,
   id_room integer not null
 );
 
@@ -119,8 +126,8 @@ CREATE TABLE IF NOT EXISTS public.assignation
 );
 
 
-
-
+ALTER TABLE public.consultation ADD CONSTRAINT consultation_room_fkey FOREIGN KEY (id_room) REFERENCES public.room(id);
+ALTER TABLE public.consultation ADD CONSTRAINT consultation_employee_fkey FOREIGN KEY (id_employee) REFERENCES public.employee(id);
 ALTER TABLE public.group ADD CONSTRAINT group_specialization_fkey FOREIGN KEY (id_specialization) REFERENCES public.specialization(id) ;
 ALTER TABLE public.student ADD CONSTRAINT student_group_fkey FOREIGN KEY (id_group) REFERENCES public.group(id) ;
 ALTER TABLE public.user ADD CONSTRAINT users_role_fkey FOREIGN KEY (id_role) REFERENCES public.role(id) ;

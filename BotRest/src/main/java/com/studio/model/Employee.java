@@ -19,12 +19,6 @@ public class Employee {
     private String surname;
     @Column(name = "birth_date")
     private Date birthDate;
-    @Column(name = "start_consultation_time")
-    private Time startConsultationTime;
-    @Column(name = "end_consultation_time")
-    private Time endConsultationTime;
-    @Column(name = "consultation_day")
-    private String consultationDay;
     @Column(name="university_nick")
     private String universityNick;
 
@@ -40,15 +34,18 @@ public class Employee {
     )
     private Set<Subject> subjects = new HashSet<>();
 
+    @OneToMany(mappedBy = "employee")
+    private Set<Consultation> consultations=new HashSet<>();
 
-    public String getConsultationDay() {
-        return consultationDay;
+
+
+    public String getUniversityNick() {
+        return universityNick;
     }
 
-    public void setConsultationDay(String consultationDay) {
-        this.consultationDay = consultationDay;
+    public void setUniversityNick(String universityNick) {
+        this.universityNick = universityNick;
     }
-
 
     public String getName() {
         return name;
@@ -74,21 +71,6 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
-    public Time getStartConsultationTime() {
-        return startConsultationTime;
-    }
-
-    public void setStartConsultationTime(Time startConsultationTime) {
-        this.startConsultationTime = startConsultationTime;
-    }
-
-    public Time getEndConsultationTime() {
-        return endConsultationTime;
-    }
-
-    public void setEndConsultationTime(Time endConsultationTime) {
-        this.endConsultationTime = endConsultationTime;
-    }
 
     public Room getRoom() {
         return room;

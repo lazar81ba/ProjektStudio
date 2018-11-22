@@ -76,6 +76,8 @@ export class ChatService {
       this.processScheduleAction();
     } else if (actionType === 'ScoreForStudent' || actionType === 'ScoreForEmployee') {
       this.processScoreAction();
+    } else if (actionType === 'Consultation') {
+     this.processConsultationAction();
     } else {
       this.update(this.prepareBotMessage());
     }
@@ -121,6 +123,29 @@ export class ChatService {
         this.update(this.prepareBotMessage());
       }
     } else {
+      this.update(this.prepareBotMessage());
+    }
+  }
+
+
+  private processConsultationAction() {
+    let error = false;
+    if (!(typeof this.res.result['parameters']['TeacherName'] === 'undefined')) {
+      let teacherName: string = this.res.result['parameters']['TeacherName'] ;
+      if (teacherName !== '') {
+        if (teacherName[teacherName.length - 1] === ' ') {
+          teacherName = teacherName.substring(0, teacherName.length - 1);
+        }
+        const teacherNameAndSurname = teacherName.split(' ');
+        if (teacherNameAndSurname.length === 2) {
+          this.scheduleService.getConsultationByNameAndSurname(teacherNameAndSurname[0], teacherNameAndSurname[1]);
+        } else {
+          this.update(new Message('You probably typed only name or surname.', 'bot'));
+          error = true;
+        }
+      }
+    }
+    if (!error) {
       this.update(this.prepareBotMessage());
     }
   }
